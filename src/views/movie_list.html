@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center">List of Movies</h1>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <ul class="list-group">
+                {% for movie in movie_list %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">{{ movie.title }}</h5>
+                            <a href="{{ url_for('movie_list', movie_id=movie.id) }}" class="btn btn-primary">Book</a>
+                        </div>
+                        <p class="mb-1">{{ movie.description }}</p>
+                        <p class="mb-1"><strong>Duration:</strong> {{ movie.duration_mins }} mins</p>
+                        <p class="mb-1"><strong>Language:</strong> {{ movie.language }}</p>
+                        <p class="mb-1"><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                        <p class="mb-1"><strong>Country:</strong> {{ movie.country }}</p>
+                        <p class="mb-1"><strong>Genre:</strong> {{ movie.genre }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-4" style="margin: 20px 0;">
+            <form method="post" action="{{ url_for('search_movies') }}">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="titleSearch" id="titleSearch" placeholder="Search by Movie Titles">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="languageSearch" id="languageSearch" placeholder="Search by Movie Language">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="genreSearch" id="genreSearch" placeholder="Search by Movie Genre">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="releasedateSearch" id="releasedateSearch" placeholder="Search for Movie Release Date">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Search</button>
+                <a href="{{ url_for('movie_list') }}" class="btn btn-primary" style="margin-top: 5px;">Clear Search</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

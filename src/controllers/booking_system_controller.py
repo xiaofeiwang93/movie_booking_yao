@@ -2,9 +2,68 @@ import csv
 from datetime import datetime, timedelta
 import random
 
+from flask import render_template, request
+
 from constants import Constants
+from models.movie import Movie
 
 class BookingSystemController:
+    """!
+    BookingSystemController class
+    """
+    def movie_list(self):
+        """!
+        Get a list of movies
+
+        @return: A list of movies
+        """
+        movie_list = []
+        
+        movies_data = BookingSystemController.read(Constants.movie_db_name)
+
+        for data in movies_data:
+            movie = Movie()
+            movie.title = data.get("title")
+            movie.description = data.get("description")
+            movie.duration_mins = data.get("duration_mins")
+            movie.language = data.get("language")
+            movie.release_date = data.get("release_date")
+            movie.country = data.get("country")
+            movie.genre = data.get("genre")
+            movie_list.append(movie)
+
+        return render_template('movie_list.html', movie_list=movie_list)
+
+    def search_movies(self):
+        """!
+        Search for movies
+
+        @param search_data: The data to search by
+        @return: A list of movies
+        """
+        movie = Movie()
+        movie.title = request.form.get('titleSearch')
+        movie.language = request.form.get('languageSearch')
+        movie.genre = request.form.get('genreSearch')
+        movie.release_date = request.form.get('releasedateSearch')
+
+        movies_data = BookingSystemController.search_records_by_multiple_attributes(Constants.movie_db_name, movie)
+
+        movie_list = []
+
+        for data in movies_data:
+            movie = Movie()
+            movie.title = data.get("title")
+            movie.description = data.get("description")
+            movie.duration_mins = data.get("duration_mins")
+            movie.language = data.get("language")
+            movie.release_date = data.get("release_date")
+            movie.country = data.get("country")
+            movie.genre = data.get("genre")
+            movie_list.append(movie)
+
+        return render_template('movie_list.html', movie_list=movie_list)
+
     def create_table(tablename, columns):
         """!
         Create a table in the database
