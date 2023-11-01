@@ -198,6 +198,12 @@ class BookingSystemController:
                         (release_date == search_release_date and search_release_date != ''))
     
     def initial_db_setup():
+        """!
+        Create the database and add some initial records
+
+        @return: None
+        """
+
         # create movie table
         BookingSystemController.create_table(Constants.movie_db_name, Constants.movie_db_columns)
 
@@ -297,10 +303,10 @@ class BookingSystemController:
 
         # Add each record to the CSV
         for record in movie_records:
-            BookingSystemController.add_record(Constants.movie_db_name, record, Constants.movie_db_columns)
+            BookingSystemController.insert(Constants.movie_db_name, record, Constants.movie_db_columns)
 
         # create movie screening table
-        BookingSystemController.create_csv_file(Constants.screening_db_name, Constants.screening_db_columns)
+        BookingSystemController.create_table(Constants.screening_db_name, Constants.screening_db_columns)
 
         screening_records = []
 
@@ -326,10 +332,10 @@ class BookingSystemController:
 
         # Add the screenings to the database
         for record in screening_records:
-            BookingSystemController.add_record(Constants.screening_db_name, record, Constants.screening_db_columns)
+            BookingSystemController.insert(Constants.screening_db_name, record, Constants.screening_db_columns)
 
         # create movie booking table
-        BookingSystemController.create_csv_file(Constants.booking_db_name, Constants.booking_db_columns)
+        BookingSystemController.create_table(Constants.booking_db_name, Constants.booking_db_columns)
 
         bookings = [
             {
@@ -383,9 +389,9 @@ class BookingSystemController:
         ]
 
         for record in bookings:
-            BookingSystemController.add_record(Constants.booking_db_name, record, Constants.booking_db_columns)
+            BookingSystemController.insert(Constants.booking_db_name, record, Constants.booking_db_columns)
 
-        BookingSystemController.create_csv_file(Constants.booking_seats_db_name, Constants.booking_seats_db_columns)
+        BookingSystemController.create_table(Constants.booking_seats_db_name, Constants.booking_seats_db_columns)
 
         seats = [
             {
@@ -412,4 +418,4 @@ class BookingSystemController:
         ]
 
         for record in seats:
-            BookingSystemController.add_record(Constants.booking_seats_db_name, record, Constants.booking_seats_db_columns)
+            BookingSystemController.insert(Constants.booking_seats_db_name, record, Constants.booking_seats_db_columns)

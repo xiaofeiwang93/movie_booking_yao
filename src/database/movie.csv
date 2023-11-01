@@ -1,0 +1,11 @@
+id,title,description,duration_mins,language,release_date,country,genre
+1,The Nun II,"1956 - France. A priest is murdered. An evil is spreading. The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun.",110,English,07/09/2023,United States,Thriller
+2,Inception,A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.,148,English,16/07/2010,United States,Sci-Fi
+3,The Godfather,The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.,175,English,24/03/1972,United States,Crime
+4,Pulp Fiction,"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",154,English,14/10/1994,United States,Crime
+5,Avatar,A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.,162,English,18/12/2009,United States,Action
+6,The Matrix,A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.,136,English,31/03/1999,United States,Sci-Fi
+7,Forrest Gump,"The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold through the perspective of an Alabama man with an IQ of 75.",142,English,06/07/1994,United States,Drama
+8,The Shawshank Redemption,"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",142,English,14/10/1994,United States,Drama
+9,Gladiator,A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.,155,English,05/05/2000,United States,Action
+10,The Dark Knight,"When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. The Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice.",152,English,18/07/2008,United States,Action
