@@ -8,7 +8,7 @@ both=['GET','POST']
 app = Flask(__name__, template_folder='views')
 ticketing_controller = BookingSystemController()
 
-BookingSystemController.initial_db_setup()
+#BookingSystemController.initial_db_setup()
 
 # app.add_url_rule('/', methods=both, view_func=ticketing_controller.login)
 
