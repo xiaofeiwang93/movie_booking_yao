@@ -1,5 +1,4 @@
-from Models.CinemaHalls.CinemaHallSeat import CinemaHallSeat
-
+from models.cinema_hall_seat import CinemaHallSeat
 
 def test_cinema_hall_seat_properties():
     # Create an instance of the CinemaHallSeat class

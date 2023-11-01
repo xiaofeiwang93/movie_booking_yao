@@ -1,8 +1,6 @@
 from datetime import datetime
 import pytest
-
-from Models.Payments.Coupon import Coupon
-
+from models.coupon import Coupon
 
 def test_coupon_properties_and_methods():
     # Create a Coupon instance with valid arguments

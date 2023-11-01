@@ -1,5 +1,5 @@
 import pytest
-from Models.Users.Guest import Guest
+from models.guest import Guest
 
 def test_guest_initialization():
     guest = Guest()

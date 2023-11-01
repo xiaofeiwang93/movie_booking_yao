@@ -1,5 +1,4 @@
-from Models.CinemaHalls.CinemaHall import CinemaHall
-
+from models.cinema_hall import CinemaHall
 
 def test_cinema_hall_properties():
     # Create an instance of the CinemaHall class

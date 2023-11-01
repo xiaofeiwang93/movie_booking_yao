@@ -1,6 +1,6 @@
 from datetime import datetime
 import pytest
-from Models.Payments.CreditCard import CreditCard
+from models.credit_card import CreditCard
 
 def test_credit_card_properties_and_methods():
     # Create a CreditCard instance with valid arguments

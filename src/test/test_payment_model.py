@@ -1,7 +1,6 @@
 from datetime import datetime
-from Models.Payments.CreditCard import CreditCard
 import pytest
-from Models.Payments.Payment import Payment
+from models.payment import Payment, CreditCard
 
 def test_payment_abstract_class():
     # Attempting to create an instance of the abstract class should raise a TypeError

@@ -1,6 +1,6 @@
 import pytest
-from datetime import date
-from Models.Bookings.Notification import Notification
+from datetime import datetime, date
+from models.notification import Notification
 
 # Test the getters and setters of the Notification class
 def test_notification_getters_and_setters():

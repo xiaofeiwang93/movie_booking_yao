@@ -1,6 +1,5 @@
 from datetime import datetime
-from Models.Movies.Movie import Movie
-
+from models.movie import Movie
 
 def test_movie_properties_and_methods():
     # Create an instance of the Movie class

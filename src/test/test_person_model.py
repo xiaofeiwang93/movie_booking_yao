@@ -1,5 +1,5 @@
 import pytest
-from Models.Users.Person import Person
+from models.person import Person
 
 class TestPerson:
     def test_person_initialization(self):

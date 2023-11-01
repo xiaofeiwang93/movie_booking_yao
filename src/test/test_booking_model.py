@@ -1,6 +1,6 @@
 from datetime import date
 import pytest
-from Models.Bookings.Booking import Booking
+from models.booking import Booking
 
 def test_booking_properties():
     # Create a Booking instance
