@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h3 class="mb-4">Billing Information</h3>
+    <form method="post" action="{{ url_for('checkout') }}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+            <label for="coupon" class="form-label">Coupon Code</label>
+            <div class="input-group">
+                <input type="text" class="form-control" name="couponid" id="couponid" placeholder="Valid Coupon is 'validcoupon'">
+            </div>
+        </div>
+
+        <h3 class="mt-4">Order Summary</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Seats</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{movie.title}}</td>
+                    <td>{{seats_count}}</td>
+                    <td>${{total_price}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Total: ${{total_price}}</h4>
+        <button type="submit" class="btn btn-outline-dark mt-3" name="payment_method" value="credit_card">Pay with Credit Card</button>
+        <button type="submit" class="btn btn-outline-dark mt-3" name="payment_method" value="debit_card">Pay with Debit Card</button>
+        <button type="submit" class="btn btn-outline-dark mt-3" name="payment_method" value="cash">Pay with Cash</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -10,7 +10,7 @@
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">{{ movie.title }}</h5>
-                            <a href="{{ url_for('movie_list', movie_id=movie.id) }}" class="btn btn-primary">Book</a>
+                            <a href="{{ url_for('book_movie', movie_id=movie.id) }}" class="btn btn-primary">Book</a>
                         </div>
                         <p class="mb-1">{{ movie.description }}</p>
                         <p class="mb-1"><strong>Duration:</strong> {{ movie.duration_mins }} mins</p>

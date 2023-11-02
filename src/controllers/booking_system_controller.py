@@ -6,6 +6,7 @@ from flask import render_template, request
 
 from constants import Constants
 from models.movie import Movie
+from models.screening import Screening
 
 class BookingSystemController:
     """!
@@ -23,6 +24,7 @@ class BookingSystemController:
 
         for data in movies_data:
             movie = Movie()
+            movie.id = data.get("id")
             movie.title = data.get("title")
             movie.description = data.get("description")
             movie.duration_mins = data.get("duration_mins")
@@ -53,6 +55,7 @@ class BookingSystemController:
 
         for data in movies_data:
             movie = Movie()
+            movie.id = data.get("id")
             movie.title = data.get("title")
             movie.description = data.get("description")
             movie.duration_mins = data.get("duration_mins")
@@ -63,6 +66,72 @@ class BookingSystemController:
             movie_list.append(movie)
 
         return render_template('movie_list.html', movie_list=movie_list)
+
+    def book_movie(self):
+        """!
+        Select Screening Date, Time, and Seats
+
+        @return: None
+        """
+        movieid = request.args.get('movie_id')
+
+        movie_data = BookingSystemController.search_by_id(movieid, Constants.movie_db_name)
+
+        movie = Movie()
+        movie.id = movie_data.get("id")
+        movie.title = movie_data.get("title")
+        movie.description = movie_data.get("description")
+        movie.duration_mins = movie_data.get("duration_mins")
+        movie.language = movie_data.get("language")
+        movie.release_date = movie_data.get("release_date")
+        movie.country = movie_data.get("country")
+        movie.genre = movie_data.get("genre")
+
+        screening_data = BookingSystemController.search_by_attribute("movieid", movieid, Constants.screening_db_name)
+
+        screening_list = []
+
+        for data in screening_data:
+            screening = Screening(
+                screening_date=data.get("date"),
+                start_time=data.get("starttime"),
+                end_time=data.get("endtime"),
+                hall=data.get("hallid")
+            )
+
+            screening_list.append(screening)
+
+        return render_template('book_movie.html', movie=movie, screening_list=screening_list)
+
+    def checkout(self):
+        """!
+        Make Payment
+
+        @return: None
+        """
+        movieid = request.args.get('movie_id')
+        selected_date = request.form['date']
+        selected_start_time = request.form['start_time']
+        form_list = []
+        for key, value in request.form.items():
+            form_list.append(key)
+        selected_seats = form_list[2:]
+
+        movie_data = BookingSystemController.search_by_id(movieid, Constants.movie_db_name)
+        movie = Movie()
+        movie.id = movie_data.get("id")
+        movie.title = movie_data.get("title")
+
+        record = {
+            'movieid': movieid,
+            'screeningid': 1,
+            'hallid': 1,
+            'customerid': 1
+        }
+
+        BookingSystemController.insert(Constants.booking_db_name, record , Constants.booking_db_columns)
+
+        return render_template('checkout.html', movie=movie, seats_count=len(selected_seats), total_price=len(selected_seats)*10)
 
     def create_table(tablename, columns):
         """!
