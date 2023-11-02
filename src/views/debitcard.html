@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block content %}
+
+{% if check_coupon == 'Valid' %}
+    <div id="liveAlertPlaceholder" style="margin: 10px 0 10px 0;">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Coupon applied! Enjoy your 20% off!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% elif check_coupon == 'Invalid' %}
+    <div id="liveAlertPlaceholder" style="margin: 10px 0 10px 0;">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Coupon is not valid. Please try next time.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% else %}
+    <div></div>
+{% endif %}
+<div class="container mt-4">
+    <h1 style="margin: 20px 0 20px 0;">Debit Card Payment</h1>
+    <form method="post" action="{{ url_for('bookings') }}">
+        <div class="mb-3">
+            <label for="debitCardNumber" class="form-label">Debit Card Number</label>
+            <input type="text" class="form-control" id="debitCardNumber" placeholder="Enter your debit card number" required>
+        </div>
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" class="form-control" id="bankName" placeholder="Enter bank name" required>
+        </div>
+        <div class="mb-3">
+            <label for="nameOnCard" class="form-label">Name on Card</label>
+            <input type="text" class="form-control" id="nameOnCard" placeholder="Enter name on card" required>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit Payment</button>
+    </form>
+</div>
+
+{% endblock %}

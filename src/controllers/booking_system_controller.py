@@ -133,6 +133,52 @@ class BookingSystemController:
 
         return render_template('checkout.html', movie=movie, seats_count=len(selected_seats), total_price=len(selected_seats)*10)
 
+    def make_payment(self):
+        """!
+        Make payment for the booking.
+
+        @param booking: The booking to be paid for.
+        @return: A Booking object representing the booking.
+        """
+
+        print("make_payment")
+
+        payment_method = request.form.get('payment_method')
+        coupon_id = request.form.get('couponid')
+        
+        if coupon_id and coupon_id == "validcoupon":
+            check_coupon = 'Valid'
+        elif coupon_id and coupon_id != "validcoupon":
+            check_coupon = 'Invalid'
+        else:
+            check_coupon = "Empty"
+        
+        print(check_coupon)
+        
+        if payment_method == 'credit_card':
+            # Process credit card payment
+            return render_template('creditcard.html', check_coupon=check_coupon)
+        elif payment_method == 'debit_card':
+            # Process debit card payment
+            return render_template('debitcard.html', check_coupon=check_coupon)
+        else:
+            return render_template('bookings.html', payment_method='cash')
+
+    def bookings(self):
+        """!
+        Get a list of bookings
+
+        @return: A list of bookings
+        """
+        bookings = []
+
+        # bookings_data = BookingSystemController.read(Constants.booking_db_name)
+
+        # for data in bookings_data:
+        #     bookings.append(data)
+
+        return render_template('bookings.html', bookings=bookings)
+
     def create_table(tablename, columns):
         """!
         Create a table in the database
