@@ -141,8 +141,6 @@ class BookingSystemController:
         @return: A Booking object representing the booking.
         """
 
-        print("make_payment")
-
         payment_method = request.form.get('payment_method')
         coupon_id = request.form.get('couponid')
         
@@ -172,12 +170,29 @@ class BookingSystemController:
         """
         bookings = []
 
-        # bookings_data = BookingSystemController.read(Constants.booking_db_name)
-
-        # for data in bookings_data:
-        #     bookings.append(data)
-
         return render_template('bookings.html', bookings=bookings)
+    
+    def add_movie(self):
+        """!
+        Create movie and save to the db.
+
+        @param movie: None.
+        """
+        movie = Movie()
+        status = False
+
+        if request.method == 'POST':
+            movie.title = request.form.get('title')
+            movie.description = request.form.get('description')
+            movie.duration = request.form.get('duration')
+            movie.language = request.form.get('language')
+            movie.release_date = request.form.get('releaseDate')
+            movie.country = request.form.get('country')
+            movie.genre = request.form.get('genre')
+
+            status = BookingSystemController.insert(Constants.movie_db_name, movie, Constants.movie_db_columns)
+
+        return render_template('add_movie.html', status=status)
 
     def create_table(tablename, columns):
         """!

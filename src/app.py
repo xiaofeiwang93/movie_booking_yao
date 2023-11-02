@@ -21,3 +21,5 @@ app.add_url_rule('/checkout', methods=both, view_func=booking_system_controller.
 app.add_url_rule('/payment', methods=both, view_func=booking_system_controller.make_payment)
 
 app.add_url_rule('/bookings', methods=both, view_func=booking_system_controller.bookings)
+
+app.add_url_rule('/movie/add', methods=both, view_func=booking_system_controller.add_movie)
